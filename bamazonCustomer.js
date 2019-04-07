@@ -7,11 +7,11 @@ var connection = mysql.createConnection({
     user: "root",
     password: "root",
     database: "bamazon_db"
-})
+});
 
 connection.connect(function (err) {
     if (err) throw err;
-})
+});
 
 var productList = function () {
     connection.query("SELECT * FROM products", function (err, res) {
@@ -70,14 +70,14 @@ var completePurchase = function (prodID, qty) {
         } else {
             var totalPrice = parseFloat(Math.round((qty * res[0].price) * 100) / 100).toFixed(2);
             console.log("Thank you for your purchase.\n" + "Product: " + res[0].product_name + "\nQuantity: " + qty + "\nTotal Price: $" + totalPrice)
-            updateInventory(prodID, qty)
+            updateInventory(prodID,totalPrice, qty)
         }
     });
 }
 
-var updateInventory = function (prodID, qty) {
-    var query = 'UPDATE products SET stock_quantity = (stock_quantity - ?) WHERE items_id=?';
-    connection.query(query, [qty, prodID], function (err, res) {
+var updateInventory = function (prodID, price, qty) {
+    var query = 'UPDATE products SET stock_quantity = (stock_quantity - ?), product_sales = (product_sales + ?) WHERE items_id=?';
+    connection.query(query, [qty, price, prodID], function (err, res) {
         if (err) throw err;
         connection.end();
     })

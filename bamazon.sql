@@ -17,5 +17,18 @@ CREATE TABLE products (
     product_name VARCHAR(100),
     department_name VARCHAR(100),
     price DECIMAL(10, 2) NOT NULL,
-    stock_quantity INT(10)
+    stock_quantity INT(10),
+    product_sales DECIMAL(10, 2) DEFAULT 0.00
+);
+
+-- table departments
+-- columns:
+-- 1. department_id
+-- 2. department_name
+-- 3. over_head_costs (dummy number)
+
+CREATE TABLE departments (
+    department_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    department_name VARCHAR(100),
+    over_head_costs DECIMAL(10, 2) NOT NULL
 );
