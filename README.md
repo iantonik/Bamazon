@@ -26,5 +26,7 @@ Setup Instructions:
 1. bamazon.sql file will provide all necessary datablase setup
 2. dept_data.csv and products.csv provide test dataset to support this application 
 
+See Bamazon_functionality.pptx in GitHub folder for functionality walkthrough. 
+
 
 
